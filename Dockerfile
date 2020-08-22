@@ -26,12 +26,10 @@ RUN apk add --no-cache nss
 
 ENV PATH $PATH:$JMETER_BIN
 
-COPY TDC_SP_2020.jmx ${JMETER_HOME}/tests/TDC_SP_2020.jmx
+COPY TDC_SP_2020.jmx TDC_SP_2020.jmx
 
 COPY launch.sh /
 
 RUN ["chmod", "+x", "/launch.sh"]
-
-WORKDIR ${JMETER_HOME}
 
 ENTRYPOINT ["/launch.sh"]
