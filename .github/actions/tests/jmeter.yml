@@ -1,0 +1,7 @@
+name: 'Run JMeter'
+description: 'Run JMeter'
+runs:
+  using: 'docker'
+  image: '../../../Dockerfile'
+  args:
+    - -n -t /opt/apache-jmeter-5.2.1/tests/TDC_SP_2020.jmx -l /opt/apache-jmeter-5.2.1/tests/report/result.jtl -j /opt/apache-jmeter-5.2.1/tests/log/jmeter.log -e -o /opt/apache-jmeter-5.2.1/tests/report

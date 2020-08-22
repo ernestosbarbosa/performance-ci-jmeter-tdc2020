@@ -1,0 +1,21 @@
+  
+name: Performance Tests
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    name: "JMeter Tests"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/tests
+      - name: Publish gh-pages
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: report
