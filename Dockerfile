@@ -7,7 +7,7 @@ ENV JMETER_BIN  ${JMETER_HOME}/bin
 ENV MIRROR_HOST http://mirrors.ocf.berkeley.edu/apache/jmeter
 ENV JMETER_DOWNLOAD_URL ${MIRROR_HOST}/binaries/apache-jmeter-${JMETER_VERSION}.tgz
 
-RUN    apk update \
+RUN apk update \
 	&& apk upgrade \
 	&& apk add ca-certificates \
 	&& update-ca-certificates
@@ -25,6 +25,10 @@ RUN apk add --update openjdk8-jre tzdata curl unzip bash \
 RUN apk add --no-cache nss
 
 ENV PATH $PATH:$JMETER_BIN
+
+# Workdir necessário para criar o volume corretamente na maquina local
+# Comentar para execução via Github Actions, pois o GH seta o WORKDIR automaticamente e alterar pode gerar problema na execução do jmeter
+#WORKDIR $JMETER_HOME/tests
 
 COPY TDC_SP_2020.jmx TDC_SP_2020.jmx
 
